@@ -1,5 +1,5 @@
 angular.module('services',[])
-    .service('CountriesSvc',function(){
+    .service('CountriesSvc',['$http',function($http){
       var countries = null;
       var countriesById = null;
       var states = null;
@@ -8,14 +8,15 @@ angular.module('services',[])
 
       this.getAll = function(){
         if ( countries === null ) {
-          countries = [
-            { id:'US', name:'United States' },
-            { id:'ES', name:'Spain' }];
-          countriesById = {};
+          countries = $http.get('/rest/countries')
+              .success(function(data){
+                countries = data.countryDTO;
+                countriesById = {};
+                angular.forEach(countries,function(country) {
+                  countriesById[country.id] = country;
+                });
+              });
         }
-        angular.forEach(countries,function(country) {
-          countriesById[country.id] = country;
-        });
         return countries;
       };
 
@@ -46,4 +47,4 @@ angular.module('services',[])
         }
         return statesByCountry[country.id];
       };
-    });
+    }]);
