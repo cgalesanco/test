@@ -14,6 +14,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>es.cgalesanco.javascript-libraries</groupId>
+      <artifactId>angular-js</artifactId>
+      <version>1.0.6</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -25,6 +34,20 @@
             <!-- Changes useFileMappedBuffer to avoid locking files in Windows -->
             <defaultsDescriptor>webdefault.xml</defaultsDescriptor>
           </webAppConfig>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <webResources>
+            <resource>
+              <directory>src/main/js</directory>
+              <targetPath>js</targetPath>
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
     </plugins>

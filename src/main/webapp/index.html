@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
-<html>
+<html data-ng-app="test-app">
 <head>
   <title>Countries/States selector sample</title>
+  <script type="text/javascript" src="js/lib/angular.js"></script>
+  <script type="text/javascript" src="js/test-app.js"></script>
 </head>
-<body>
+<body data-ng-controller="TestCtrl">
 <form>
   <ul>
-    <li><label for="countries">Countries</label> <select id="countries" multiple>
-      <option value="US">United States</option>
-      <option value="ES">Spain</option>
-    </select></li>
-    <li><label for="states">States</label> <select id="states" multiple>
-      <option value="US:DE">Delaware</option>
-      <option value="US:CA">California</option>
-      <option value="ES:LO">La Rioja</option>
-      <option value="ES:MA">Madrid</option>
-    </select></li>
+    <li><label for="countries">Countries</label>
+      <select id="countries" multiple data-ng-model="selectedCountries"
+              data-ng-options="c.name for c in allCountries"></select>
+    </li>
+    <li><label for="states">States</label>
+      <select id="states" multiple data-ng-model="selectedStates"
+              data-ng-options="s.name group by s.country.name for s in allStates"></select>
+    </li>
   </ul>
 </form>
 </body>
