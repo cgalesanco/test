@@ -1,18 +1,6 @@
-angular.module('controllers',[]).
-    controller('TestCtrl',['$scope',function($scope){
-      var countries = [
-        { id:'US', name:'United States' },
-        { id:'ES', name:'Spain' }
-      ];
-
-      var states = [
-        { id:'US:DE', name:'Delaware', country:countries[0]},
-        { id:'US:CA', name:'California', country:countries[0]},
-        { id:'ES:LO', name:'La Rioja', country:countries[1]},
-        { id:'ES:M', name:'Madrid', country:countries[1]}
-      ];
-
-      $scope.allCountries = countries;
+angular.module('controllers',['services']).
+    controller('TestCtrl',['$scope','CountriesSvc', function($scope,CountriesSvc){
+      $scope.allCountries = CountriesSvc.getAll();
       $scope.selectedCountries = [];
 
     $scope.allStates = [];
@@ -23,12 +11,8 @@ angular.module('controllers',[]).
       var newSelectedStates = [];
       var countriesFound = {};
       angular.forEach(newValue,function(country){
+        newStatesList = newStatesList.concat(CountriesSvc.getCountryStates(country));
         countriesFound[country.id] = true;
-        angular.forEach(states,function(s){
-          if ( country === s.country ) {
-            newStatesList.push(s);
-          }
-        });
       });
       $scope.allStates = newStatesList;
       angular.forEach($scope.selectedStates,function(ss){
