@@ -2,18 +2,27 @@
 <html data-ng-app="test-app">
 <head>
   <title>Countries/States selector sample</title>
+  <script type="text/javascript" src="js/lib/jquery.js"></script>
+  <script type="text/javascript" src="js/lib/chosen.js"></script>
   <script type="text/javascript" src="js/lib/angular.js"></script>
+  <script type="text/javascript" src="js/directives.js"></script>
   <script type="text/javascript" src="js/test-app.js"></script>
+
+  <link rel="stylesheet" href="css/lib/chosen.css"/>
 </head>
 <body data-ng-controller="TestCtrl">
 <form>
   <ul>
     <li><label for="countries">Countries</label>
-      <select id="countries" multiple data-ng-model="selectedCountries"
+      <select id="countries" multiple data-cga-chosen
+              style="width:20em" data-placeholder="All Countries"
+              data-ng-model="selectedCountries"
               data-ng-options="c.name for c in allCountries"></select>
     </li>
     <li><label for="states">States</label>
-      <select id="states" multiple data-ng-model="selectedStates"
+      <select id="states" multiple data-cga-chosen
+              style="width:20em"
+              data-ng-model="selectedStates" data-placeholder="All States"
               data-ng-options="s.name group by s.country.name for s in allStates"></select>
     </li>
   </ul>

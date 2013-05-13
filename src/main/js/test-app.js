@@ -1,4 +1,4 @@
-angular.module('test-app',[]);
+angular.module('test-app',['directives']);
 
 function TestCtrl($scope) {
   $scope.allCountries = [
