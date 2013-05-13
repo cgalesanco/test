@@ -15,6 +15,9 @@
   </properties>
 
   <dependencies>
+    <!--
+    = Javascript dependencies
+    ===================================================================================== -->
     <dependency>
       <groupId>es.cgalesanco.javascript-libraries</groupId>
       <artifactId>angular-js</artifactId>
@@ -27,6 +30,7 @@
       <version>0.9.13</version>
       <scope>runtime</scope>
     </dependency>
+
     <dependency>
       <groupId>es.cgalesanco.javascript-libraries</groupId>
       <artifactId>angular-mocks</artifactId>
@@ -37,6 +41,10 @@
 
   <build>
     <plugins>
+      <!--
+      = Jetty Plugin
+      =  Used for rapid develop/test cycles.
+      =================================================================================== -->
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
@@ -49,6 +57,10 @@
         </configuration>
       </plugin>
 
+      <!--
+      = WAR plugin configuration
+      =  Copies Javascript sources under the js directory of the webapp
+      =================================================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -64,7 +76,7 @@
       </plugin>
 
       <!--
-      = Jasmine Maven Plugin
+      = Jasmine Plugin
       =  Runs Jasmine specs (unit tests for Javascript source). Configured to run tests
       =  against PhantomJS (must be in the system's path).
       =========================================================================================== -->
