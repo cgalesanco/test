@@ -11,7 +11,9 @@ angular.module('controllers',['services']).
       var newSelectedStates = [];
       var countriesFound = {};
       angular.forEach(newValue,function(country){
-        newStatesList = newStatesList.concat(CountriesSvc.getCountryStates(country));
+        CountriesSvc.getCountryStates(country).then(function(states) {
+          countriesFound
+        });
         countriesFound[country.id] = true;
       });
       $scope.allStates = newStatesList;

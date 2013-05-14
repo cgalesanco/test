@@ -9,6 +9,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
+  <repositories>
+    <repository>
+      <id>cgalesanco</id>
+      <url>http://demo.desarrolloagil.es/nexus/content/repositories/releases</url>
+    </repository>
+  </repositories>
+
   <properties>
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
